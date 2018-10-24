@@ -12,13 +12,13 @@
 */
 
 Route::get('/', function () {
-  return 'QR Ticket Manager v2.0';
+  return response()->json(['app' => 'CGCU Ticket Manager', 'version' => '2.0.0']);
 });
 
-Route::post('/migrations', function () {
+Route::post('/migrations', ['middleware' => 'auth', function () {
   $exitCode = Artisan::call('migrate');
   return $exitCode;
-});
+}]);
 
 // Events routes
 Route::get('/events', ['uses' => 'EventController@getAll', 'middleware' => 'auth']);
