@@ -28,7 +28,7 @@
 <p>
     If this ticket is on your phone, please turn your brightness up and zoom into the QR Code below:
 </p>
-<img width="200" src="<?php echo $message->embed($qrData); ?>">
+<img width="400" src="<?php echo $message->embedData($qr->get(), 'ticket_qr.png', $qr->getContentType()); ?>">
 <p>Ticket number: <?php echo $ticket->qr; ?></p>
 <h2>Information for the night</h2>
 <ul>

@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Attendee;
 use App\Event;
+use App\Jobs\SendTicketEmail;
 use App\Ticket;
 use DateTime;
+use Endroid\QrCode\QrCode;
 use Illuminate\Mail\Message;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use GuzzleHttp\Client;
-use Log;
 
 class TicketController extends Controller {
   public function getAll($eventId) {
@@ -22,15 +24,10 @@ class TicketController extends Controller {
     $tickets = Ticket::with(['purchaser'])->where('event_id', $eventId)->where('email_sent', false)->get();
     $delay = 0;
     foreach ($tickets as $ticket) {
-      $qrData = $ticket->qr;
-      Mail::later($delay += 2, ['emails.welcome-dinner', 'emails.welcome-dinner-text'], ['ticket' => $ticket, 'qrData' => $qrData], function (Message $m) use ($ticket, $qrData) {
-        $m->from('guilds@ic.ac.uk', 'CGCU Committee');
-        $m->to($ticket->purchaser->email)->subject('CGCU Welcome Dinner Ticket');
-        $m->attach($qrData);
-      });
+      $this->dispatch((new SendTicketEmail($ticket, $ticket->purchaser))->delay($delay += 2.5));
       $ticket->update(['email_sent' => true]);
     }
-    return response()->json(['emailsSent' => $tickets.count()]);
+    return response()->json(['emailsSent' => $tickets->count()]);
   }
 
   public function import($eventId) {
