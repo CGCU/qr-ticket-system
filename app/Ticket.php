@@ -4,13 +4,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model {
 
-  protected $fillable = ["qr", "email_sent", "order_number"];
-
-  protected $dates = [];
-
   public static $rules = [
     // Validation rules
   ];
+  protected $fillable = ["qr", "email_sent", "order_number"];
+  protected $dates = [];
 
   public function event() {
     return $this->belongsTo("App\Event");

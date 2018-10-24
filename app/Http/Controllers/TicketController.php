@@ -7,11 +7,8 @@ use App\Event;
 use App\Jobs\SendTicketEmail;
 use App\Ticket;
 use DateTime;
-use Endroid\QrCode\QrCode;
-use Illuminate\Mail\Message;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Log;
 
 class TicketController extends Controller {
   public function getAll($eventId) {
@@ -97,6 +94,10 @@ class TicketController extends Controller {
 
     return response(null, 201)
       ->header('Location', action('TicketController@getAll', ['eventId' => $event->id]));
+  }
+
+  public function transfer(Request $req, $eventId, $id) {
+
   }
 
   public function delete($eventId, $id) {

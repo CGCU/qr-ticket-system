@@ -16,20 +16,20 @@ Route::get('/', function () {
 });
 
 // Events routes
-Route::get('/events', 'EventController@getAll');
-Route::post('/events', 'EventController@create');
-Route::get('/events/{id}', 'EventController@read');
-Route::patch('/events/{id}', 'EventController@update');
-Route::delete('/events/{id}', 'EventController@delete');
+Route::get('/events', ['uses' => 'EventController@getAll', 'middleware' => 'auth']);
+Route::post('/events', ['uses' => 'EventController@create', 'middleware' => 'auth']);
+Route::get('/events/{id}', ['uses' => 'EventController@read', 'middleware' => 'auth']);
+Route::patch('/events/{id}', ['uses' => 'EventController@update', 'middleware' => 'auth']);
+Route::delete('/events/{id}', ['uses' => 'EventController@delete', 'middleware' => 'auth']);
 
 // Tickets routes
-Route::get('/events/{eventId}/tickets', 'TicketController@getAll');
-Route::post('/events/{eventId}/tickets', 'TicketController@create');
-Route::post('/events/{eventId}/tickets/import', 'TicketController@import');
-Route::post('/events/{eventId}/tickets/email', 'TicketController@sendEmails');
-Route::delete('/events/{eventId}/tickets/{id}', 'TicketController@delete');
+Route::get('/events/{eventId}/tickets', ['uses' => 'TicketController@getAll', 'middleware' => 'auth']);
+Route::post('/events/{eventId}/tickets', ['uses' => 'TicketController@create', 'middleware' => 'auth']);
+Route::post('/events/{eventId}/tickets/import', ['uses' => 'TicketController@import', 'middleware' => 'auth']);
+Route::post('/events/{eventId}/tickets/email', ['uses' => 'TicketController@sendEmails', 'middleware' => 'auth']);
+Route::delete('/events/{eventId}/tickets/{id}', ['uses' => 'TicketController@delete', 'middleware' => 'auth']);
 
 // Union product routes
-Route::get('/events/{eventId}/union-products', 'UnionProductController@getAll');
-Route::post('/events/{eventId}/union-products', 'UnionProductController@create');
-Route::delete('/events/{eventId}/union-products/{id}', 'UnionProductController@delete');
+Route::get('/events/{eventId}/union-products', ['uses' => 'UnionProductController@getAll', 'middleware' => 'auth']);
+Route::post('/events/{eventId}/union-products', ['uses' => 'UnionProductController@create', 'middleware' => 'auth']);
+Route::delete('/events/{eventId}/union-products/{id}', ['uses' => 'UnionProductController@delete', 'middleware' => 'auth']);

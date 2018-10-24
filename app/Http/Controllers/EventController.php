@@ -17,6 +17,12 @@ class EventController extends Controller {
       ->header('Location', action('EventController@read', ['id' => $event->id]));
   }
 
+  private function sanitiseInput(Request $req) {
+    $processed = $req->only(['name', 'date']);
+    $processed['date'] = new DateTime($processed['date']);
+    return $processed;
+  }
+
   public function read($id) {
     return response()->json(Event::with('union_products')->findOrFail($id));
   }
@@ -31,11 +37,5 @@ class EventController extends Controller {
     $event = Event::findOrFail($id);
     $event->delete();
     return response(null, 203);
-  }
-
-  private function sanitiseInput(Request $req) {
-    $processed = $req->only(['name', 'date']);
-    $processed['date'] = new DateTime($processed['date']);
-    return $processed;
   }
 }

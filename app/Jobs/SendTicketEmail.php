@@ -2,13 +2,11 @@
 
 namespace App\Jobs;
 
-use App\Jobs\Job;
 use Endroid\QrCode\QrCode;
-use Illuminate\Mail\Message;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Mail\Message;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
 
 class SendTicketEmail extends Job implements ShouldQueue {

@@ -4,13 +4,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model {
 
-  protected $fillable = ["name", "date"];
-
-  protected $dates = ["date"];
-
   public static $rules = [
     // Validation rules
   ];
+  protected $fillable = ["name", "date"];
+  protected $dates = ["date"];
 
   public function tickets() {
     return $this->hasMany("App\Ticket");
