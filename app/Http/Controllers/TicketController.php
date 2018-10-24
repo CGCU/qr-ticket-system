@@ -77,11 +77,11 @@ class TicketController extends Controller {
 
   public function create(Request $req, $eventId) {
     $event = Event::findOrFail($eventId);
-    $purchaser = Attendee::where(['login' => $req->input('purchaser')['id']])->updateOrCreate([
-      "first_name" => $req->input('purchaser')['firstName'],
-      "last_name" => $req->input('purchaser')['lastName'],
-      "email" => $req->input('purchaser')['email'],
-      "login" => $req->input('purchaser')['login']
+    $purchaser = Attendee::where(['login' => $req->input('id')])->updateOrCreate([
+      "first_name" => $req->input('firstName'),
+      "last_name" => $req->input('lastName'),
+      "email" => $req->input('email'),
+      "login" => $req->input('login'),
     ]);
     $purchaser->save();
     $ticketCode = substr(base_convert(bin2hex(openssl_random_pseudo_bytes(8)), 16, 36), 0, 12);
@@ -94,10 +94,6 @@ class TicketController extends Controller {
 
     return response(null, 201)
       ->header('Location', action('TicketController@getAll', ['eventId' => $event->id]));
-  }
-
-  public function transfer(Request $req, $eventId, $id) {
-
   }
 
   public function delete($eventId, $id) {

@@ -15,6 +15,7 @@ class CreateEventsTable extends Migration {
       $table->string('name');
       $table->dateTime('date'); // DateTime of event
       $table->timestamps();
+      $table->softDeletes();
     });
   }
 

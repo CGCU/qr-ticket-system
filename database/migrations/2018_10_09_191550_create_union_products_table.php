@@ -17,6 +17,7 @@ class CreateUnionProductsTable extends Migration {
       $table->foreign('event_id')->references('id')->on('events');
       $table->date('last_imported')->nullable();
       $table->timestamps();
+      $table->softDeletes();
     });
   }
 

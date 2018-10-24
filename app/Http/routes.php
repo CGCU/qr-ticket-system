@@ -15,6 +15,11 @@ Route::get('/', function () {
   return 'QR Ticket Manager v2.0';
 });
 
+Route::post('/migrations', function () {
+  $exitCode = Artisan::call('migrate');
+  return $exitCode;
+});
+
 // Events routes
 Route::get('/events', ['uses' => 'EventController@getAll', 'middleware' => 'auth']);
 Route::post('/events', ['uses' => 'EventController@create', 'middleware' => 'auth']);

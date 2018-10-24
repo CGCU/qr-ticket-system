@@ -26,6 +26,7 @@ class CreateTicketsTable extends Migration {
       $table->string('qr');
       $table->boolean('email_sent');
       $table->timestamps();
+      $table->softDeletes();
     });
   }
 

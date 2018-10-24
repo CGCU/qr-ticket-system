@@ -1,14 +1,16 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Ticket extends Model {
+  use SoftDeletes;
 
   public static $rules = [
     // Validation rules
   ];
   protected $fillable = ["qr", "email_sent", "order_number"];
-  protected $dates = [];
+  protected $dates = ['deleted_at'];
 
   public function event() {
     return $this->belongsTo("App\Event");

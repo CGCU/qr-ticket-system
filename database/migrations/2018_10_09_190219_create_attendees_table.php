@@ -17,6 +17,7 @@ class CreateAttendeesTable extends Migration {
       $table->string('email');
       $table->string('login');
       $table->timestamps();
+      $table->softDeletes();
     });
   }
 
