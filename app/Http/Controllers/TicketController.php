@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Attendee;
 use App\Event;
+use Illuminate\Http\Request;
 use App\Jobs\SendTicketEmail;
 use App\Ticket;
 use DateTime;
