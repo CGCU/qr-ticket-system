@@ -15,6 +15,10 @@ Route::get('/', function () {
   return response()->json(['app' => 'CGCU Ticket Manager', 'version' => '2.0.1']);
 });
 
+Route::get('/test', ['middleware' => 'auth', function () {
+  return response()->json(require(__DIR__ . '/../../config/database.php'));
+}]);
+
 // Events routes
 Route::get('/events', ['uses' => 'EventController@getAll', 'middleware' => 'auth']);
 Route::post('/events', ['uses' => 'EventController@create', 'middleware' => 'auth']);

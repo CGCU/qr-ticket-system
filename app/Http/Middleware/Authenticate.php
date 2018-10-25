@@ -14,7 +14,7 @@ class Authenticate {
    */
   public function handle($request, Closure $next) {
     $serverKey = env('API_SERVER_KEY');
-    if ($request->getHost() === env('APP_HOST') && strlen($serverKey) > 0 && $request->header('X-API-KEY') === $serverKey) {
+    if (strlen($serverKey) > 0 && $request->header('X-API-KEY') === $serverKey) {
       return $next($request);
     }
     return response()->json(['error' => 'Unauthorized'], 401);
