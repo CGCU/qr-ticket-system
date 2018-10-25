@@ -33,7 +33,7 @@ class SendTicketEmail extends Job implements ShouldQueue {
     $qrCode = (new QrCode)->setText($this->ticket->qr)->setSize(400);
     Mail::send(['emails.welcome-dinner', 'emails.welcome-dinner-text'], ['ticket' => $this->ticket, 'qr' => $qrCode],
       function (Message $m) use ($ticket) {
-        $m->from('guilds@ic.ac.uk', 'CGCU Committee');
+        $m->from('guilds@ic.ac.uk', 'City and Guilds College Union');
         $m->to($ticket->purchaser->email)->subject('CGCU Welcome Dinner Ticket');
       });
   }

@@ -1,5 +1,7 @@
 <?php
 
+$url = parse_url(getenv("DATABASE_URL"));
+
 return [
 
   /*
@@ -77,6 +79,17 @@ return [
       'prefix' => env('DB_TABLE_PREFIX', ''),
       'schema' => 'public',
     ],
+
+    'url' => [
+      'driver'   => env('DB_DRIVER', 'mysql'),
+      'host'     => $url['host'],
+      'database' => substr($url['path'], 1),
+      'username' => $url['username'],
+      'password' => $url['password'],
+      'charset'  => 'utf8',
+      'prefix'   => env('DB_TABLE_PREFIX', ''),
+      'schema'   => 'public',
+    ]
 
   ],
 
