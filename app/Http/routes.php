@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-  return response()->json(['app' => 'CGCU Ticket Manager', 'version' => '2.0.0']);
+  return response()->json(['app' => 'CGCU Ticket Manager', 'version' => '2.0.1']);
 });
 
 Route::post('/migrations', ['middleware' => 'auth', function () {
