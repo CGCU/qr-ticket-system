@@ -1,6 +1,6 @@
 <?php
 
-$url = parse_url(getenv("DATABASE_URL"));
+$url = parse_url(getenv('DATABASE_URL'));
 
 return [
 
@@ -82,10 +82,10 @@ return [
 
     'url' => [
       'driver'   => env('DB_DRIVER', 'mysql'),
-      'host'     => $url['host'],
-      'database' => substr($url['path'], 1),
-      'username' => $url['username'],
-      'password' => $url['password'],
+      'host'     => isset($url['host']) ? $url['host'] : 'NOT_SET',
+      'database' => substr(isset($url['path']) ? $url['path'] : 'NOT_SET', 1),
+      'username' => isset($url['user']) ? $url['user'] : 'NOT_SET',
+      'password' => isset($url['pass']) ? $url['pass'] : 'NOT_SET',
       'charset'  => 'utf8',
       'prefix'   => env('DB_TABLE_PREFIX', ''),
       'schema'   => 'public',
