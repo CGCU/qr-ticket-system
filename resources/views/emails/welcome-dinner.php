@@ -33,7 +33,7 @@
 <h2>Information for the night</h2>
 <ul>
     <li>Location <a href="https://goo.gl/maps/k8MAJNSz7F52">Millenium Gloucester Hotel</a></li>
-    <li>Time: Please arrive between 18:30 and 19:00. Don't be late otherwise you miss might out on your arrival drink!
+    <li>Time: Please arrive between 18:30 and 19:00. Don't be late otherwise you miss might out on your arrival drink! If you know you will be arriving late, please send a message to CGCU on Facebook.
     </li>
     <li>Dress Code: Black Tie</li>
     <li>A cash/card bar with drinks is available with student prices (although we would recommend bringing cash)</li>
@@ -42,7 +42,7 @@
     </li>
 </ul>
 <p>
-    This event will end late, please stay safe and plan your journey home.
+    This event will end late, <strong>please stay safe and plan your journey home: this is an event to remember, not to forget!</strong>.
 </p>
 <p>
     Looking forward to seeing you there!
