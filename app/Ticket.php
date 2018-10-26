@@ -9,7 +9,7 @@ class Ticket extends Model {
   public static $rules = [
     // Validation rules
   ];
-  protected $fillable = ["qr", "email_sent", "order_number"];
+  protected $fillable = ["qr", "email_sent", "order_number", 'scanned'];
   protected $dates = ['deleted_at'];
 
   public function event() {

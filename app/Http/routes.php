@@ -27,6 +27,7 @@ Route::get('/events/{eventId}/tickets', ['uses' => 'TicketController@getAll', 'm
 Route::post('/events/{eventId}/tickets', ['uses' => 'TicketController@create', 'middleware' => 'auth']);
 Route::post('/events/{eventId}/tickets/import', ['uses' => 'TicketController@import', 'middleware' => 'auth']);
 Route::post('/events/{eventId}/tickets/email', ['uses' => 'TicketController@sendEmails', 'middleware' => 'auth']);
+Route::post('/events/{eventId}/tickets/verify', ['uses' => 'TicketController@verify', 'middleware' => 'auth']);
 Route::delete('/events/{eventId}/tickets/{id}', ['uses' => 'TicketController@delete', 'middleware' => 'auth']);
 
 // Union product routes

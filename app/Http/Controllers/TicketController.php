@@ -76,6 +76,16 @@ class TicketController extends Controller {
     return response()->json(['ticketsCreated' => $createdCount]);
   }
 
+  // Verify ticket
+  public function verify(Request $req, $eventId) {
+    $ticket = Ticket::where(['event_id' => $eventId, 'qr' => $req->input('qr'), 'scanned' => false])->first();
+    if ($ticket) {
+      $ticket->update(['scanned' => true]);
+      $ticket->save();
+    }
+    return response()->json(['verified' => (boolean)$ticket]);
+  }
+
   public function create(Request $req, $eventId) {
     $event = Event::findOrFail($eventId);
     $purchaser = Attendee::where(['login' => $req->input('id')])->updateOrCreate([
